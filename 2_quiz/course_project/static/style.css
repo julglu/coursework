@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+   margin:10px;
+   padding:10px;
+}
+.graph, .graph tr, .graph td  {
+    
+    padding: 0px;
+    margin: 0px;
+    vertical-align: bottom;
+    text-align: center;
+}
+.graph  {
+    border-left: 1px solid black;
+}
+.graph_col    {
+    text-align: center;
+	border-bottom: 1px solid black;
+}
+
+.graph_col div {
+    width: 30px;
+    background-color:#36C;
+    color: white;
+    margin: 10px 3px;
+}
+.graph_legend td {
+   color: black;
+   padding: 5px;
+}
+.answer_list {
+   list-style-type: none;
+}

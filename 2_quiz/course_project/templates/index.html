@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Start quiz</title>
+</head>
+<body>
+	<h4>Вы хотите принять участие в опросе?</h4>	
+	<form action="/quiz/check/" method="POST">
+	{% csrf_token %}        
+	<button type="submit">Да</button>
+	</form>
+</body>
+</html>

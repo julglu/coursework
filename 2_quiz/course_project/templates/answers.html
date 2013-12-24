@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Quiz</title>
+	<link rel="stylesheet" href="{% static "style.css" %}" />
+</head>
+<body>
+	<h4>{{ question.question_text }}</h4>		
+	<form action="/quiz/check/" method="POST">
+	{% csrf_token %}
+        {% for answer in question.answer_set.all %}	
+        	<p><input type="radio" name="answer" id="answer{{ answer.id }}" value="{{answer.pk}}"/>{{ answer.answer_version }}</p>      
+        {% endfor %}
+	<button type="submit">Ответить</button>
+	</form>
+</body>
+</html>

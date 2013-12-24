@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Гистограмма</title>
+<link rel="stylesheet" href="{% static "style.css" %}" />
+</head>
+<body>
+	<h2>Результаты опроса:</h2>
+    <p id="votes_cnt"></p>
+    <table class="graph" cellspacing="0px">    
+	    <tr>
+		{% for answer in question.answer_set.all %}
+		<td class="graph_col"><div id="{{answer.id}}"></div></td>	   
+    {% endfor %}
+     </tr>
+    
+	    <tr class="graph_legend">
+		{% for answer in question.answer_set.all %}
+		<td>{{answer.id}}</td>	    
+    {% endfor %}
+	</tr>
+    </table>
+    <p>Где:</p>
+    {% for answer in question.answer_set.all %}
+    <ul class="answer_list">
+        <li>{{ answer.id }}: {{answer.answer_version}}</li>
+    </ul>
+    {% endfor %}
+    <p><a href="/quiz/">Вернуться к опросу</a></p>
+    <script>
+		window.onload=function(){
+                        var votes=0;
+			{% for answer in question.answer_set.all %}
+			    var col=document.getElementById("{{answer.id}}");
+			    col.style.height={{answer.cnt}}*10+"px";
+			    col.innerHTML={{answer.cnt}};
+			    votes+={{answer.cnt}};
+			{% endfor %}
+			document.getElementById("votes_cnt").innerHTML="Всего проголосовало человек: "+votes;
+		}
+	</script>
+</body>
+</html>
